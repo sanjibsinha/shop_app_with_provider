@@ -30,31 +30,44 @@ class ShoHomePage extends StatelessWidget {
   const ShoHomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final products = Provider.of<Products>(context).products;
+    // final products = Provider.of<Products>(context).products;
+    final products = context.watch<Products>().products;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Products App'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('All products length:'),
-            Text(
-              '${context.watch<Products>().products.length}',
-              key: const Key('productKeyOne'),
-              style: Theme.of(context).textTheme.headline4,
+      body: GridView.builder(
+        padding: const EdgeInsets.all(10.0),
+        itemCount: products.length,
+        itemBuilder: (ctx,
+                i) => /* ChangeNotifierProvider.value(
+          // builder: (c) => products[i],
+          value: products[i], */
+            ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: GridTile(
+            child: GestureDetector(
+              onTap: () {},
+              child: Image.network(
+                context.watch<Products>().products[i].imageUrl,
+                fit: BoxFit.cover,
+              ),
             ),
-            const SizedBox(
-              height: 10.0,
+            footer: GridTileBar(
+              backgroundColor: Colors.black87,
+              title: Text(
+                context.watch<Products>().products[i].title,
+                textAlign: TextAlign.center,
+              ),
             ),
-            Text(
-              '${products.length}',
-              key: const Key('productKeyTwo'),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+          ),
+        ),
+        // ),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
         ),
       ),
     );
