@@ -21,13 +21,13 @@ class ShopAppWithProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: ShoHomePage(),
+      home: ShopHomePage(),
     );
   }
 }
 
-class ShoHomePage extends StatelessWidget {
-  const ShoHomePage({Key? key}) : super(key: key);
+class ShopHomePage extends StatelessWidget {
+  const ShopHomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // final products = Provider.of<Products>(context).products;
