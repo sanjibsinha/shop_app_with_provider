@@ -30,39 +30,39 @@ class ShopHomePage extends StatelessWidget {
   const ShopHomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // final products = Provider.of<Products>(context).products;
-    final products = context.watch<Products>().products;
+    final product = Provider.of<Products>(context).products;
+    // final products = context.watch<Products>().products;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Products App'),
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(10.0),
-        itemCount: products.length,
-        itemBuilder: (ctx,
-                i) => /* ChangeNotifierProvider.value(
-          // builder: (c) => products[i],
-          value: products[i], */
-            ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: GridTile(
-            child: GestureDetector(
-              onTap: () {},
-              child: Image.network(
-                context.watch<Products>().products[i].imageUrl,
-                fit: BoxFit.cover,
+        itemCount: product.length,
+        itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+          value: product[i],
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: GridTile(
+              child: GestureDetector(
+                onTap: () {},
+                child: Image.network(
+                  // context.watch<Products>().products[i].imageUrl,
+                  product[i].imageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            footer: GridTileBar(
-              backgroundColor: Colors.black87,
-              title: Text(
-                context.watch<Products>().products[i].title,
-                textAlign: TextAlign.center,
+              footer: GridTileBar(
+                backgroundColor: Colors.black87,
+                title: Text(
+                  // context.watch<Products>().products[i].title,
+                  product[i].title,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
           ),
         ),
-        // ),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 3 / 2,
