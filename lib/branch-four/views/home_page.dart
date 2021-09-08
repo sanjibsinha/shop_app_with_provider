@@ -8,6 +8,8 @@ import '../views/about_all_wars.dart';
 import 'all_wars.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -15,7 +17,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentTab = 0;
 
-  List _icons = [
+  final List _icons = [
     '1700',
     '1800',
     '1900',
@@ -34,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         width: 80.0,
         height: 40.0,
         alignment: Alignment.center,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(30.00)),
           boxShadow: [
             BoxShadow(
@@ -55,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         child: Text(
           '${_icons[index]}',
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 25.00,
             fontFamily: 'Trajan Pro',
             fontWeight: FontWeight.bold,
@@ -70,7 +72,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32),
           children: <Widget>[
             Text(
               'Welcome to Modern War History!',
@@ -83,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                     ..strokeWidth = 1.0
                     ..style = PaintingStyle.stroke),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.00,
             ),
             Row(
@@ -94,15 +96,15 @@ class _HomePageState extends State<HomePage> {
                   .map((MapEntry map) => _buildIcons(map.key))
                   .toList(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.00,
             ),
             TopBattleController(),
-            SizedBox(
+            const SizedBox(
               height: 20.00,
             ),
             WeaponController(),
-            SizedBox(
+            const SizedBox(
               height: 20.00,
             ),
             CyberController(),
@@ -116,27 +118,27 @@ class _HomePageState extends State<HomePage> {
             _currentTab = value;
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: CircleAvatar(
               radius: 15.00,
               backgroundColor: Colors.lightBlueAccent,
             ),
-            title: SizedBox.shrink(),
+            label: 'Favorite',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.search,
               size: 30.00,
             ),
-            title: SizedBox.shrink(),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.location_searching,
               size: 30.00,
             ),
-            title: SizedBox.shrink(),
+            label: 'Location',
           ),
         ],
       ),
