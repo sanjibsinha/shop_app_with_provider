@@ -16,21 +16,88 @@ class HomePage extends StatelessWidget {
   }
 }
 
+class Student {
+  String id;
+  String name;
+  int age;
+
+  Student({
+    required this.id,
+    required this.name,
+    required this.age,
+  });
+}
+
 class FirstPage extends StatelessWidget {
   FirstPage({Key? key}) : super(key: key);
 
-  final List _icons = [
+  /* final List _icons = [
     '1700',
     '1800',
     '1900',
+  ]; */
+
+  final List<Student> students = [
+    Student(
+      id: 's1',
+      name: 'John',
+      age: 10,
+    ),
+    Student(
+      id: 's2',
+      name: 'Json',
+      age: 11,
+    ),
+    Student(
+      id: 's3',
+      name: 'Allen',
+      age: 9,
+    ),
+    Student(
+      id: 's4',
+      name: 'Maria',
+      age: 8,
+    ),
+    Student(
+      id: 's5',
+      name: 'Becky',
+      age: 10,
+    ),
+    Student(
+      id: 's6',
+      name: 'John',
+      age: 10,
+    ),
+    Student(
+      id: 's7',
+      name: 'Json',
+      age: 11,
+    ),
+    Student(
+      id: 's8',
+      name: 'Allen',
+      age: 9,
+    ),
+    Student(
+      id: 's9',
+      name: 'Maria',
+      age: 8,
+    ),
+    Student(
+      id: 's10',
+      name: 'Becky',
+      age: 10,
+    ),
   ];
 
   Widget _buildIcons(BuildContext context, int index) {
+    final List x = students.asMap().entries.map((e) => e.key).toList();
+    final int y = x.length;
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed(
           AllPage.routename,
-          arguments: index,
+          arguments: y,
         );
       },
       child: Container(
@@ -57,7 +124,7 @@ class FirstPage extends StatelessWidget {
           ),
         ),
         child: Text(
-          '${_icons[index]}',
+          '$index',
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 25.00,
@@ -75,9 +142,8 @@ class FirstPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('List, Map and Navigation'),
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: _icons
+      body: Wrap(
+        children: students
             .asMap()
             .entries
             .map((MapEntry map) => _buildIcons(context, map.key))

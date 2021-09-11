@@ -6,33 +6,25 @@ class AllPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productId = ModalRoute.of(context)!.settings.arguments as int;
+    final student = ModalRoute.of(context)!.settings.arguments as int;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          '$productId',
-          style: const TextStyle(
+        title: const Text(
+          'All Students',
+          style: TextStyle(
             fontFamily: 'Schuyler',
             fontSize: 30.0,
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Text(
-              '$productId',
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 20,
-                fontFamily: 'Anton',
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-          ],
+      body: Center(
+        child: Text(
+          'Number of Students $student',
+          style: const TextStyle(
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
